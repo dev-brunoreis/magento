@@ -18,6 +18,18 @@
         "composer-normalize": {
             "indent-size": 4,
             "indent-style": "space"
+        },
+        "magento-core-deploy": {
+            "excludes": [
+                "app/etc/local.xml",
+                "mkdocs.yml",
+                ".ddev"
+            ],
+            "git-ignore-append": true,
+            "ignore-directories": [
+                ".phpstorm.meta.php",
+                ".ddev"
+            ]
         }
     },
     "scripts": {
