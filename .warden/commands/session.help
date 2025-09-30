@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+[[ ! ${WARDEN_DIR} ]] && >&2 echo -e "\033[31mThis script is not intended to be run directly!\033[0m" && exit 1
+
+WARDEN_USAGE=$(cat <<EOF
+\033[33mUsage:\033[0m
+  session [options]
+
+\033[33mDescription:\033[0m
+  Manage Magento 1 sessions across different storage backends.
+  Magento 1 can store sessions in files, Redis, or database.
+
+\033[33mOptions:\033[0m
+  -h, --help        Display this help menu
+
+  --files           Clear only file-based sessions (var/session)
+
+  --redis           Clear only Redis sessions (default database 1)
+
+  --database        Clear only database sessions (core_session table)
+
+  --all             Clear sessions from all storage backends (default)
+
+  --list            List active sessions from all backends
+
+  --count           Count sessions in each storage backend
+
+  --redis-db <num>  Specify Redis database number for sessions (default: 1)
+
+\033[33mExamples:\033[0m
+  warden session                  # Clear all sessions (files, Redis, database)
+  warden session --files          # Clear only file-based sessions
+  warden session --redis          # Clear only Redis sessions
+  warden session --database       # Clear only database sessions
+  warden session --list           # List all active sessions
+  warden session --count          # Count sessions in each backend
+  warden session --redis-db 2     # Clear Redis sessions from database 2
+
+\033[33mStorage Backends:\033[0m
+  \033[36mFiles:\033[0m       var/session/sess_* files (default Magento behavior)
+  \033[36mRedis:\033[0m       Redis database (commonly database 1 for sessions)
+  \033[36mDatabase:\033[0m    core_session table in MySQL/MariaDB
+
+\033[33mCommon Use Cases:\033[0m
+  - Clear sessions after configuration changes
+  - Debug login/logout issues
+  - Clean up expired sessions during development
+  - Switch between different session storage backends
+  - Troubleshoot session-related performance issues
+
+\033[33mNote:\033[0m
+  - Clearing sessions will log out all users
+  - Redis database 1 is commonly used for sessions (database 0 for cache)
+  - Database sessions require core_session table to exist
+  - File sessions are stored with 'sess_' prefix in var/session directory
+
+EOF
+)

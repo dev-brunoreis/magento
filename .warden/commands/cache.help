@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+[[ ! ${WARDEN_DIR} ]] && >&2 echo -e "\033[31mThis script is not intended to be run directly!\033[0m" && exit 1
+
+WARDEN_USAGE=$(cat <<EOF
+\033[33mUsage:\033[0m
+  cache [options]
+
+\033[33mDescription:\033[0m
+  Clear various cache types for Magento 1 development environment.
+  By default, clears both Redis and Magento file-based caches.
+
+\033[33mOptions:\033[0m
+  -h, --help        Display this help menu
+
+  --redis           Clear only Redis cache (default database 0)
+
+  --magento         Clear only Magento file-based caches (var/cache, var/full_page_cache,
+                    var/session, media/css, media/js)
+
+  --all             Clear both Redis and Magento caches (default behavior)
+
+  --flush-all       Flush all Redis databases (use with caution)
+
+  --redis-db <num>  Specify Redis database number to clear (default: 0)
+
+\033[33mExamples:\033[0m
+  warden cache                    # Clear both Redis and Magento caches
+  warden cache --redis            # Clear only Redis cache (database 0)
+  warden cache --magento          # Clear only Magento file caches
+  warden cache --redis-db 1       # Clear Redis database 1
+  warden cache --flush-all        # Flush all Redis databases
+
+\033[33mNote:\033[0m
+  - Redis cache is commonly used for sessions, backend cache, and full page cache
+  - File-based caches include configuration, layout, blocks, and compiled assets
+  - Use --flush-all cautiously as it clears all Redis data across all databases
+
+EOF
+)
