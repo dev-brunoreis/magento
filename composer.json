@@ -6,6 +6,26 @@
     "config": {
         "allow-plugins": {
             "ergebnis/composer-normalize": true
+        },
+        "platform": {
+            "php": "8.4"
         }
+    },
+    "extra": {
+        "enable-patching": true,
+        "magento-core-package-type": "magento-source",
+        "magento-root-dir": ".",
+        "composer-normalize": {
+            "indent-size": 4,
+            "indent-style": "space"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer normalize"
+        ],
+        "post-update-cmd": [
+            "@composer normalize"
+        ]
     }
 }
