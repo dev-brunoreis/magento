@@ -25,7 +25,7 @@ SKIP_INSTALL=
 ADMIN_USER="admin"
 ADMIN_PASS="admin1234@admin"
 ADMIN_EMAIL="admin@example.com"
-STORE_NAME="Beali Store"
+STORE_NAME="Magento"
 LOCALE="pt_BR"
 TIMEZONE="America/Sao_Paulo"
 CURRENCY="BRL"
@@ -164,10 +164,11 @@ if [[ ! ${SKIP_INSTALL} ]]; then
     if [[ ! -f "${WARDEN_WEB_ROOT}/app/etc/local.xml.template" ]]; then
         cp "${WARDEN_WEB_ROOT}/vendor/openmage/magento-lts/app/etc/local.xml.template" "${WARDEN_WEB_ROOT}/app/etc/local.xml.template"
     fi
-
+    :: Droping and recreating database
     warden db connect -e 'drop database if exists magento; create database magento;'
-
-    php -f install.php -- --license_agreement_accepted yes \
+    :: Installing OpenMage
+    warden env exec -T php-fpm php "${WARDEN_WEB_ROOT}/install.php" -- \
+        --license_agreement_accepted yes \
         --locale "${LOCALE}" \
         --timezone "${TIMEZONE}" \
         --default_currency "${CURRENCY}" \

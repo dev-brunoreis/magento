@@ -1,4 +1,5 @@
-vendor/
+/vendor/
+/app/etc/local.xml
 .env
 .phpstorm.meta.php
 .ddev
