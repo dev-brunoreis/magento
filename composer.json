@@ -1,24 +1,25 @@
 {
     "name": "dev-brunoreis/magento",
     "require": {
-        "ergebnis/composer-normalize": "^2.48"
+        "aydin-hassan/magento-core-composer-installer": "~2.1.0",
+        "ergebnis/composer-normalize": "^2.48",
+        "openmage/magento-lts": "^20.0.0"
     },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true
-        },
-        "platform": {
-            "php": "8.4"
+            "aydin-hassan/magento-core-composer-installer": true,
+            "cweagans/composer-patches": true,
+            "ergebnis/composer-normalize": true,
+            "magento-hackathon/magento-composer-installer": true,
+            "openmage/composer-plugin": true
         }
     },
     "extra": {
-        "enable-patching": true,
-        "magento-core-package-type": "magento-source",
-        "magento-root-dir": ".",
         "composer-normalize": {
             "indent-size": 4,
             "indent-style": "space"
         },
+        "enable-patching": true,
         "magento-core-deploy": {
             "excludes": [
                 "app/etc/local.xml",
@@ -30,7 +31,9 @@
                 ".phpstorm.meta.php",
                 ".ddev"
             ]
-        }
+        },
+        "magento-core-package-type": "magento-source",
+        "magento-root-dir": "."
     },
     "scripts": {
         "post-install-cmd": [
