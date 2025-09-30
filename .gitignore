@@ -1,4 +1,5 @@
 vendor/
+.env
 .phpstorm.meta.php
 .ddev
 /skin/frontend/rwd/default/css/styles.css
