@@ -1,0 +1,11 @@
+{
+    "name": "dev-brunoreis/magento",
+    "require": {
+        "ergebnis/composer-normalize": "^2.48"
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    }
+}
