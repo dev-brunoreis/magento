@@ -2,6 +2,11 @@ vendor/
 .env
 .phpstorm.meta.php
 .ddev
+/js/lib/tinymce/
+/app/code/community/Cm/RedisSession
+/app/code/community/Cm/Cache/
+/lib/Credis
+/app/etc/modules/Cm_RedisSession.xml
 /skin/frontend/rwd/default/css/styles.css
 /skin/frontend/rwd/default/css/scaffold-forms.css
 /skin/frontend/rwd/default/css/madisonisland.css
