@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+[[ ! ${WARDEN_DIR} ]] && >&2 echo -e "\033[31mThis script is not intended to be run directly!\033[0m" && exit 1
+
+WARDEN_USAGE=$(cat <<EOF
+\033[33mUsage:\033[0m
+  bootstrap [--skip-install] [--admin-user <user>] [--admin-pass <pass>]
+
+\033[33mOptions:\033[0m
+  -h, --help        Display this help menu
+
+  --clean-install   perform a fresh OpenMage installation from scratch
+
+  --no-pull         when specified latest images will not be explicitly pulled prior
+                    to environment startup to facilitate use of locally built images
+
+  --skip-install    skips over OpenMage installation (assume already installed)
+
+  --admin-user      specify admin username (defaults to 'admin')
+
+  --admin-pass      specify admin password (defaults to auto-generated)
+
+  --admin-email     specify admin email (defaults to 'admin@example.com')
+
+  --store-name      specify store name (defaults to 'Beali Store')
+
+  --locale          specify locale (defaults to 'pt_BR')
+
+  --timezone        specify timezone (defaults to 'America/Sao_Paulo')
+
+  --currency        specify default currency (defaults to 'BRL')
+
+EOF
+)
